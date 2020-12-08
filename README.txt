@@ -1,3 +1,6 @@
+Created by Guandi Wang 
+email: gw1035@nyu.edu
+
 This website is designed as a online shopping website.
 The database is made up of five major components: user, address, inventory, product, and orders. 
 The ER diagram is also uploaded in this repository, named ER_diagram.png.
