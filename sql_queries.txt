@@ -1,0 +1,66 @@
+create table if not exists address(
+a_id int(10) not null auto_increment,
+country varchar(15) not null,
+state char(2) not null,
+city varchar(15) not null,
+addr_line1 varchar(20) not null,
+addr_line2 varchar(20),
+primary key (a_id)
+);
+
+create table if not exists user_info(
+u_id int(10) not null auto_increment,
+u_name varchar(15) unique not null,
+u_pw char(40) not null,
+balance int(10) not null,
+a_id int(10),
+foreign key (a_id) references address(a_id),
+primary key (u_id)
+);
+
+create table if not exists inventory(
+i_id int(10) not null auto_increment,
+i_name varchar(15) unique not null,
+i_size int(10) not null,
+a_id int(10),
+foreign key (a_id) references address(a_id),
+primary key (i_id)
+);
+
+create table if not exists product(
+p_id int(10) not null auto_increment,
+p_name varchar(15) not null,
+description varchar(50) not null,
+unit_price int not null,
+unit varchar(15) not null,
+primary key (p_id)
+);
+
+create table if not exists stored_in(
+p_id int(10) not null,
+i_id int(10) not null,
+st_num int not null,
+primary key (p_id, i_id),
+foreign key (p_id) references product(p_id),
+foreign key (i_id) references inventory(i_id)
+);
+
+create table if not exists orders(
+p_id int(10) not null,
+u_id int(10) not null,
+o_id int(10) not null auto_increment,
+o_year int not null,
+o_month int not null,
+o_day int not null,
+o_amount int not null,
+primary key (o_id, p_id, u_id),
+foreign key (p_id) references product(p_id),
+foreign key (u_id) references user_info(u_id)
+);
+
+insert into address (country, state, city, addr_line1) values ('US', 'NY', 'Brooklyn', '55 Clark St');
+insert into inventory (i_name, i_size, a_id) values ('Ministorage', 10000, 1);
+insert into product(p_name, description, unit_price, unit) values ('Apple', 'Edible apple', 5, 'kilogram');
+insert into stored_in values (1,1,500);
+insert into product(p_name, description, unit_price, unit) values ('Orange', 'Edible orange', 8, 'kilogram');
+insert into stored_in values (2,1,500);
