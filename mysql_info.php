@@ -1,6 +1,7 @@
 <?php 
-define("DB_H","localhost");
-define("DB_U","Andy");
-define("DB_P","1116");
-define("DB_DB","test_db");
+// Define your mysql connection info here
+define("DB_H","localhost"); // Host
+define("DB_U",""); // User
+define("DB_P",""); // Password
+define("DB_DB",""); // Database
 //$dbc = mysqli_connect('DB_H','DB_U','DB_P','DB_DB');
