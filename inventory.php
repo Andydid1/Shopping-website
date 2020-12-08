@@ -6,6 +6,10 @@
         header("Location: login.php");
         exit;
     }
+    if(!empty($_SESSION['err'])){
+        echo "Error";
+        $_SESSION['err'] = null;
+    }
     include_once "mysql_info.php";
     $dbc = mysqli_connect(constant("DB_H"),constant("DB_U"),constant("DB_P"),constant("DB_DB"));
     $curr_i_id = $_GET['i_id'];
@@ -20,15 +24,16 @@
     $result = mysqli_query($dbc, $query);
     $row = mysqli_fetch_array($result);
     echo "<h1>Inventory---{$row['i_name']}</h1>";
-    $query = "select a_id from user_info where u_name = '{$_SESSION['login']}';";
+    $query = "select a_id, balance from user_info where u_name = '{$_SESSION['login']}';";
     $result = mysqli_query($dbc, $query);
     $row = mysqli_fetch_array($result);
     if(empty($row['a_id'])){
         echo "<small><font color='red'>Remember to set your address before purchase!</font></small></br>";
     }
+    $balance = $row['balance'];
     ?>
     Welcome, <a href='person_info.php'><?php echo $_SESSION['login']?></a>---<a href='orders.php'>My orders</a>---
-    <a href='log_out.php'>Log out</a>
+    <a href='log_out.php'>Log out</a>---<font color="blue">Balance: $<?php echo $balance?></font>
     </br>
     <table width="80%" border="3" cellpadding="0" cellspacing="0">
         <tr>
@@ -58,8 +63,8 @@
                 <td>{$row['description']}</td>
                 <td>\${$row['unit_price']}</td>
                 <td>{$row['unit']}</td>
-                <td>{$items_remain[$i]}</td>
-                <td><a href='purchase.php?p_id={$curr_p}'>Purchase</a></td>
+                <td><a href='modify_storage.php?i_id={$curr_i_id}&p_id={$curr_p}'>{$items_remain[$i]}</a></td>
+                <td><a href='purchase.php?p_id={$curr_p}&i_id={$curr_i_id}'>Purchase</a></td>
                 </tr>";
                 $i++;
             endforeach;

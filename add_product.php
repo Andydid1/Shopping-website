@@ -5,6 +5,9 @@
         $_SESSION['err'] = null;
     }
     if(empty($_SESSION['login'])){
+        header("Location: login.php");
+    }
+    if(empty($_GET['i_id'])){
         header("Location: inventory.php");
     }
     $curr_i_id = $_GET['i_id'];
@@ -34,6 +37,8 @@
                 <input type='submit' value='Submit'>
             </div>
         </form>
+        <a href="add_existing_p.php?i_id=<?php echo $curr_i_id;?>">Add from existing product</a>
+        </br>
         <a href="inventory.php?i_id=<?php echo $curr_i_id;?>">Back to inventory</a>
     </body>
 </html>

@@ -2,7 +2,7 @@
     session_start();
     if(empty($_SESSION['login'])){
         $_SESSION['err'] = 1;
-        header("Location: increase_balance.php");
+        header("Location: login.php");
         exit;
     }
     // Check input validity

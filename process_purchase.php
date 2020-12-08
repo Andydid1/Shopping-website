@@ -4,13 +4,18 @@
         header("Location: login.php");
         exit;
     }
+    if(!empty($_GET['p_id']) && !empty($_GET['i_id'])){
+        $_SESSION['err'] = 1;
+        header("Location: inventory.php");
+    }
     $u_name = $_SESSION['login'];
-    // Check input validity
     $p_id = $_GET['p_id'];
+    $i_id = $_GET['i_id'];
+    // Check input validity
     $amount = $_POST['amount'];
     if($amount==''){
         $_SESSION['err'] = 1;
-        header("Location: purchase.php?p_id={$p_id}");
+        header("Location: purchase.php?p_id={$p_id}&i_id={$i_id}");
         exit;
     }
     $arr = str_split($amount,1);
@@ -18,26 +23,26 @@
     for($i=0;$i<$n;$i++){
         if(!is_numeric($arr[$i])){
             $_SESSION['err'] = 1;
-            header("Location: purchase.php?p_id={$p_id}");
+            header("Location: purchase.php?p_id={$p_id}&i_id={$i_id}");
             exit;
         }
     }
     $amount = (int)$amount;
     if($amount <= 0){
         $_SESSION['err'] = 1;
-        header("Location: purchase.php?p_id={$p_id}");
+        header("Location: purchase.php?p_id={$p_id}&i_id={$i_id}");
         exit;
     }
     include_once "mysql_info.php";
     $dbc = mysqli_connect(constant("DB_H"),
     constant("DB_U"),constant("DB_P"),constant("DB_DB"));
-    $query = "select * from stored_in where p_id = {$p_id};";
+    $query = "select * from stored_in where p_id = {$p_id} and i_id = {$i_id};";
     $result = mysqli_query($dbc, $query);
     $row = mysqli_fetch_array($result);
     $storage = $row['st_num'];
     if($storage < $amount){
         $_SESSION['err'] = 1;
-        header("Location: purchase.php?p_id={$p_id}");
+        header("Location: purchase.php?p_id={$p_id}&i_id={$i_id}");
         exit;
     }
     // Make the purchase
@@ -60,12 +65,12 @@
     $sum = $amount * $unit_price;
     if($sum > $balance){
         $_SESSION['err'] = 1;
-        header("Location: purchase.php?p_id={$p_id}");
+        header("Location: purchase.php?p_id={$p_id}&i_id={$i_id}");
         exit;
     }
     // Modify storage
     $remain_storage = $storage - $amount;
-    $query = "update stored_in set st_num = {$remain_storage} where p_id = {$p_id};";
+    $query = "update stored_in set st_num = {$remain_storage} where p_id = {$p_id} and i_id = {$i_id};";
     mysqli_query($dbc, $query);
     // Modify balance
     $remain_balance = $balance - $sum;

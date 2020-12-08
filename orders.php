@@ -48,10 +48,10 @@
                 echo "<tr>
                     <td>{$p_name}</td>
                     <td>{$description}</td>
-                    <td>{$unit_price}</td>
+                    <td>\${$unit_price}</td>
                     <td>{$o_amount}</td>
                     <td>{$unit}</td>
-                    <td>{$total_cost}</td>
+                    <td>\${$total_cost}</td>
                     <td>{$date}</td>
                 </tr>";
             }

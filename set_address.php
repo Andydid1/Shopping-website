@@ -29,6 +29,7 @@
 ?>
 <html>
     <body>
+        <div><font color='red'>Please fill in all the required fields.</font></div>
         <?php 
             $_GET['a_id'] = $a_id;
             echo "
@@ -48,7 +49,7 @@
                         Address Line 1: <input type='text' name='addr_line1'>
                     </div>
                     <div>
-                        Address Line 2: <input type='text' name='addr_line2'>
+                        Address Line 2 (Optional): <input type='text' name='addr_line2'>
                     </div>
                     <div>
                         <input type='submit' value='Submit'>
@@ -69,7 +70,7 @@
                         Address Line 1: <input type='text' name='addr_line1' value = '{$addr_line1}'>
                     </div>
                     <div>
-                        Address Line 2: <input type='text' name='addr_line2' value = '{$addr_line2}'>
+                        Address Line 2 (Optional): <input type='text' name='addr_line2' value = '{$addr_line2}'>
                     </div>
                     <div>
                         <input type='submit' value='Submit'>
@@ -78,5 +79,6 @@
                 }
         ?>
         </form>
+        <a href="person_info.php">Back to personal info</a>
     </body>
 </html>

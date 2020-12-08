@@ -4,7 +4,7 @@
         echo "<red>Username and password doesn't match!</red>";
         $_SESSION['err'] = null;
     }
-    if(isset($_SESSION['login'])){
+    if(!empty($_SESSION['login'])){
         header("Location: inventory.php");
     }
 ?>
