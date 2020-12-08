@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <h1>Person Info</h1>
 <?php
+    session_start();
     if(empty($_SESSION['login'])){
         header("Location: login.php");
     }
-    session_start();
     $u_name = $_SESSION['login'];
     include_once "mysql_info.php";
     $dbc = mysqli_connect(constant("DB_H"),

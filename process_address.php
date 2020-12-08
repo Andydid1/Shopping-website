@@ -41,4 +41,4 @@
             mysqli_query($dbc, $query);
         }
     }
-    header("Location: person_info.php");
+    header("Location: address_success.html");
