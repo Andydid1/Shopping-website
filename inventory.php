@@ -44,30 +44,18 @@
             <td>Remaining</td>
         </tr>  
         <?php
-            // $dbc = mysqli_connect(constant("DB_H"),constant("DB_U"),constant("DB_P"),constant("DB_DB"));
-            $query = "select * from stored_in where i_id = $curr_i_id;";
+            $query = "select * from stored_in join product on stored_in.p_id = product.p_id where i_id = {$curr_i_id} order by p_name;";
             $result = mysqli_query($dbc,$query);
-            $items_id = array();
-            $items_remain = array();
-            $i = 0;
             while($row = mysqli_fetch_array($result)):
-                array_push($items_id,$row['p_id']);
-                array_push($items_remain,$row['st_num']);
+                    echo "<tr>
+                    <td>{$row['p_name']}</td>
+                    <td>{$row['description']}</td>
+                    <td>\${$row['unit_price']}</td>
+                    <td>{$row['unit']}</td>
+                    <td><a href='modify_storage.php?i_id={$curr_i_id}&p_id={$row['p_id']}'>{$row['st_num']}</a></td>
+                    <td><a href='purchase.php?p_id={$row['p_id']}&i_id={$curr_i_id}'>Purchase</a></td>
+                    </tr>";
             endwhile;
-            foreach($items_id as $curr_p):
-                $query = "select * from product where p_id = {$curr_p}";
-                $result = mysqli_query($dbc, $query);
-                $row = mysqli_fetch_array($result);
-                echo "<tr>
-                <td>{$row['p_name']}</td>
-                <td>{$row['description']}</td>
-                <td>\${$row['unit_price']}</td>
-                <td>{$row['unit']}</td>
-                <td><a href='modify_storage.php?i_id={$curr_i_id}&p_id={$curr_p}'>{$items_remain[$i]}</a></td>
-                <td><a href='purchase.php?p_id={$curr_p}&i_id={$curr_i_id}'>Purchase</a></td>
-                </tr>";
-                $i++;
-            endforeach;
         ?>
     </table>
     <a href='add_product.php?i_id=<?php echo $curr_i_id;?>'>Add a new product</a>
