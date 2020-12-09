@@ -36,7 +36,25 @@ Instruction:
 (1) Clone the repository and modify mysql_info.php with information about your mysql server.
 (2) Set up mysql database with queries in sql_queries.txt, the queries would create the tables needed for 
 the website. The queries would also create an inventory called Ministorage, products Apple and Orange.
+(Instruction 2 is Very important, otherwise accessing mysql would not be successful)
 (3) Then start your server and go to sign_up.php or login.php in your browswer to start your shopping experience.
+
+To fully explore the website, follow the following instruction:
+(1)	Sign up through sign_up.php. Try input wrong repeating password, you would see an error is caught. Don’t worry
+about crashing, all errors would be caught.
+(2)	After signing up, you will be automatically logged in and find yourself in the inventory page. You will see your
+balance is set to $1000 by default.
+(3)	Click on your user name on inventory page to get to person info page. Here you can modify your address and 
+your balance. Missing a field other than address_line2 would cause error.
+(4)	Try purchase an item. Filling a non-number for amount would catch an error and come back. Insufficient balance 
+or storage would catch an error.
+(5)	After purchasing, check My orders to see the purchase just made.
+(6)	Try adding a new product, you can choose either creating a new product or add an existing order.
+(7)	Try creating a new inventory, remember to fill in required field except address line2. After creation, you can 
+add product in your new inventory. Navigate between inventories through the bar below inventory page.
+(8)	Modify your product storage by clicking on the Remaining number of each product in an inventory.
+(9)	Try log out and log in again.
+
 
 PS:
 You have to log into an account in order to do anything else. To get an account, click sign up or go to 
