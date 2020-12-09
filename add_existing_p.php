@@ -43,4 +43,5 @@
             endwhile;
         ?>
     </table>
+    <a href='add_product.php?i_id=<?php echo $i_id;?>'>Back</a>
 </html>
