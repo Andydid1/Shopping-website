@@ -34,9 +34,9 @@ of a user is displayed in my order page if a user is logged in.
 
 Instruction:
 (1) Clone the repository and modify mysql_info.php with information about your mysql server.
+(Instruction 1 is Very important, otherwise accessing mysql would not be successful)
 (2) Set up mysql database with queries in sql_queries.txt, the queries would create the tables needed for 
 the website. The queries would also create an inventory called Ministorage, products Apple and Orange.
-(Instruction 2 is Very important, otherwise accessing mysql would not be successful)
 (3) Then start your server and go to sign_up.php or login.php in your browswer to start your shopping experience.
 
 To fully explore the website, follow the following instruction:
