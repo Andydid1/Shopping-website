@@ -49,7 +49,7 @@ your balance. Missing a field other than address_line2 would cause error.
 (4)	Try purchase an item. Filling a non-number for amount would catch an error and come back. Insufficient balance 
 or storage would catch an error.
 (5)	After purchasing, check My orders to see the purchase just made.
-(6)	Try adding a new product, you can choose either creating a new product or add an existing order.
+(6)	Try adding a new product, you can choose either creating a new product or add an existing one.
 (7)	Try creating a new inventory, remember to fill in required field except address line2. After creation, you can 
 add product in your new inventory. Navigate between inventories through the bar below inventory page.
 (8)	Modify your product storage by clicking on the Remaining number of each product in an inventory.
